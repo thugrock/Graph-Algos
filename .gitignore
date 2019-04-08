@@ -1,3 +1,7 @@
 .vscode/*
 java/.vscode/*
 java/*.class
+.idea/*
+Graph_alg.iml
+src/*
+out/*
