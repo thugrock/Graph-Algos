@@ -1,19 +1,14 @@
-package bfs_dfs.application;
-
-import bfs_dfs.traversals.BFS;
-import bfs_dfs.traversals.vertex;
-import bfs_dfs.traversals.DFS;
+package cycle_detection;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class main {
 
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+    public static Scanner in=new Scanner(System.in);
+
+    public static ArrayList<vertex> vertexInput(){
         int vertex_count;
-        BFS bfs = new BFS();
-        DFS dfs = new DFS();
         ArrayList<vertex> vertexs = new ArrayList<>();
         System.out.println("Enter the number of Verticies in Graph:");
         vertex_count = in.nextInt();
@@ -36,28 +31,13 @@ public class Main {
                 vertexs.get(i - 1).addNeighbour(vertexs.get(j - 1));
             }
         }
-        // For BFS
-        System.out.println("The BFS of Following Graph would be:");
-        bfs.bfs(vertexs.get(0));
+        return vertexs;
+    }
+    public static void main(String[] args) {
+        ArrayList<vertex> vertexs=vertexInput();
+        Cycle_Detection cycle_detection=new Cycle_Detection();
+        cycle_detection.detectCycle(vertexs);
+        System.out.println("Number of Cycles detected is/are: "+cycle_detection.getCount());
 
-        //Formatting and setting for further use
-        System.out.println("");
-        for(vertex v: vertexs){
-            v.setVisited(false);
-        }
-
-        // For DFS Iterative
-        System.out.println("The Iterative DFS of Following Graph would be:");
-        dfs.dfs_iterative(vertexs.get(0));
-
-        //Formatting and setting for further use
-        System.out.println("");
-        for(vertex v: vertexs){
-            v.setVisited(false);
-        }
-
-        //For DFS Recursive
-        System.out.println("The Recursive DFS of Following Graph would be:");
-        dfs.dfs_rec(vertexs.get(0));
     }
 }
